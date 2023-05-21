@@ -6,6 +6,7 @@ var commentSchema = new mongoose.Schema({
     _idUser: Number,
     rank: Number,
     comment: Number,
+    data: Date,
 });
 
 module.exports = mongoose.model('comment');

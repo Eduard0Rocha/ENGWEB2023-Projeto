@@ -6,8 +6,8 @@ var fileSchema = new mongoose.Schema({
     nome: String,
     tipo: String,
     tema: [String],
-    dataCriacao: String,
-    dataRegisto: String,
+    dataCriacao: Date,
+    dataRegisto: Date,
     visibilidade: String,
 });
 

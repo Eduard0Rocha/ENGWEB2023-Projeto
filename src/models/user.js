@@ -8,8 +8,8 @@ var userSchema = new mongoose.Schema({
     email: String,
     filiacao: String,
     nivel: String,
-    dataRegisto: String,
-    dataUltimoAcesso: String,
+    dataRegisto: Date,
+    dataUltimoAcesso: Date,
     password: String,
 });
 

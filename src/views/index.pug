@@ -13,28 +13,28 @@ block content
           label Password
           input.w3-input(type="password" name="password" required)
       input.w3-button.w3-blue(style="margin: 7px 0 7px 15px" type="submit" value="Entrar")
-    form.w3-card-4.w3-display-right.w3-light-gray(style="width:40%;margin-right:6%;margin-top:6%" action="/login" method="POST")
+    form.w3-card-4.w3-display-right.w3-light-gray(style="width:40%;margin-right:6%;margin-top:6%" action="/register" method="POST")
       fieldset(style="border:none;padding:0;margin:0")
         .w3-container.w3-blue.w3-padding
           h2 Registar
         .w3-container.w3-padding
           label Username
-          input.w3-input(type="text" required)
+          input.w3-input(type="text" name="username" required)
         .w3-container.w3-padding
           label Email
-          input.w3-input(type="text" required)
+          input.w3-input(type="text" name="email" required)
         .w3-container.w3-padding
           label Password
-          input.w3-input(type="password" required)
+          input.w3-input(type="password" name="password" required)
         .w3-container.w3-padding
           label Filiação
-          select.w3-select(name="filiação")
+          select.w3-select(name="filiacao" type="text" required)
             option(value="" disabled select) Escolha uma opção 
             option(value="Estudante") Estudante
             option(value="Docente") Docente
         .w3-container.w3-padding
           label Nível 
-          select.w3-select(name="nível")
+          select.w3-select(name="nivel")
             option(value="" disabled select) Escolha uma opção 
             option(value="Consumidor") Consumidor
             option(value="Produtor") Produtor
