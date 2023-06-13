@@ -45,3 +45,7 @@ block content
             option(value="Consumidor") Consumidor
             option(value="Produtor") Produtor
       input.w3-button.w3-blue(style="margin: 7px 0 7px 15px" type="submit" value="Registar")
+  if message
+    .w3-panel.w3-yellow(style="bottom: 0; left: 25%; position: absolute; width: 1000px")
+      h3 Aviso
+      p #{message}

@@ -3,11 +3,11 @@ var router = express.Router();
 
 var axios = require("axios");
 
-// TODO: eliminar isto
-
 router.post("/", function(req,res) {
 
     var newUser = req.body;
+
+    // TODO: testar se o nivel é Consumidor ou Produtor
 
     axios.get("http://localhost:3000/api/cursos/" + newUser.curso_uni)
         .then(r => {
@@ -20,9 +20,13 @@ router.post("/", function(req,res) {
 
                     if (r2.data.error) {
 
-                        // TODO: Meter isto numa mensagem no pug de login
-
-                        res.json(r2.data.error);
+                        axios.get("http://localhost:3000/api/cursos")
+                            .then(r3 => {
+                                res.render("login", {cursos: r3.data, message: r2.data.error.message});
+                            })
+                            .catch(err3 => {
+                                res.render("error", {error: err3});
+                            })
                     }
 
                     else {

@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 var indexRouter = require('./routes/index')
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
+var consumidorRouter = require('./routes/consumidor');
+var produtorRouter = require('./routes/produtor');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -21,9 +24,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.get("/", function(req,res) {
+
+  res.redirect("/index");
+})
+
 app.use('/index', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/consumidor', consumidorRouter);
+app.use('/produtor', produtorRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
