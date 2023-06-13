@@ -9,8 +9,6 @@ var auth = require('../auth/auth')
 
 var user = require("../controllers/user");
 
-// TODO: interface
-
 // TODO: logout na interface
 
 // TODO: na interface ter definições para alterar password ou eliminar conta

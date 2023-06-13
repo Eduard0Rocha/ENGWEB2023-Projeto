@@ -43,26 +43,7 @@ var userSchema = new Schema({
         type: Date,
         required: true,
         default: new Date()
-    },
-    listaDeTemas: {
-
-        type: [{
-            tema: {
-                desc: {
-                    type: String,
-                    required: true
-                },
-                numeroDePesquisas: {
-                    type: Number,
-                    required: true
-                }
-            }}
-        ],
-
-        required: true,
-
-        default: []
-    } 
+    }
 })
 
 userSchema.plugin(passportLocalMongoose);
