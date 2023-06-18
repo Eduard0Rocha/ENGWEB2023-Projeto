@@ -9,9 +9,6 @@ var auth = require('../auth/auth')
 
 var user = require("../controllers/user");
 
-// TODO: logout na interface
-
-// TODO: na interface ter definições para alterar password ou eliminar conta
 // TODO: o admin ve as estatisticas de tudo, incluindo temas mais procurados,
 // TODO: (...) contas criadas na ultima semana e numero de utilizadores na aplicação
 // TODO: (...) e a sua distribuição por nivel
