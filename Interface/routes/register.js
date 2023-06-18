@@ -7,7 +7,10 @@ router.post("/", function(req,res) {
 
     var newUser = req.body;
 
-    // TODO: testar se o nivel é Consumidor ou Produtor
+    if (newUser.nivel != "Produtor" && newUser.nivel != "Consumidor") {
+
+        return res.redirect("/login");
+    }
 
     axios.get("http://localhost:3000/api/cursos/" + newUser.curso_uni)
         .then(r => {
@@ -22,10 +25,10 @@ router.post("/", function(req,res) {
 
                         axios.get("http://localhost:3000/api/cursos")
                             .then(r3 => {
-                                res.render("login", {cursos: r3.data, message: r2.data.error.message});
+                                return res.render("login", {cursos: r3.data, message: r2.data.error.message});
                             })
                             .catch(err3 => {
-                                res.render("error", {error: err3});
+                                return res.render("error", {error: err3});
                             })
                     }
 
@@ -47,13 +50,18 @@ router.post("/", function(req,res) {
                     }
                 })
                 .catch(err2 => {
-                    res.render("error", {error: err2});
+                    return res.render("error", {error: err2});
                 })
             })
 
         .catch(err => {
-            res.render("error", {error: err});
+            return res.render("error", {error: err});
         });
-})
+});
+
+router.get("/", function(req,res) {
+
+    return res.redirect("/login");
+});
 
 module.exports = router;

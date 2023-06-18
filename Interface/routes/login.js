@@ -7,10 +7,10 @@ router.get('/', function(req, res) {
 
   axios.get("http://localhost:3000/api/cursos")
     .then(r => {
-      res.render("login", {cursos: r.data});
+      return res.render("login", {cursos: r.data});
     })
     .catch(err => {
-      res.render("error", {error: err});
+      return res.render("error", {error: err});
     })
 });
 
@@ -23,10 +23,10 @@ router.post("/", function(req,res) {
 
         axios.get("http://localhost:3000/api/cursos")
           .then(r2 => {
-              res.render("login", {cursos: r2.data, message: r.data.error.message});
+              return res.render("login", {cursos: r2.data, message: r.data.error.message});
           })
           .catch(err2 => {
-              res.render("error", {error: err2});
+              return res.render("error", {error: err2});
           })
       }
 
@@ -34,7 +34,7 @@ router.post("/", function(req,res) {
 
         token = r.data.token;
 
-        res.send(`
+        return res.send(`
             <html>
                 <body>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
@@ -50,10 +50,10 @@ router.post("/", function(req,res) {
     .catch(err => {
       axios.get("http://localhost:3000/api/cursos")
         .then(r2 => {
-            res.render("login", {cursos: r2.data, message: "Credenciais inválidas"});
+            return res.render("login", {cursos: r2.data, message: "Credenciais inválidas"});
         })
         .catch(err2 => {
-            res.render("error", {error: err2});
+            return res.render("error", {error: err2});
         })
     })
 })

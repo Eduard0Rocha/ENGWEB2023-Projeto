@@ -9,9 +9,7 @@ router.get("/", function(req,res) {
 
     if (!jwtToken) {
 
-        res.redirect("/login");
-
-        return;
+        return res.redirect("/login");
     }
 
     axios.get("http://localhost:3000/api/users", {
@@ -27,33 +25,28 @@ router.get("/", function(req,res) {
 
                 case "Consumidor": {
 
-                    res.redirect("/consumidor");
+                    return res.redirect("/consumidor");
                 }
 
                 case "Produtor": {
 
-                    res.redirect("/produtor");
+                    return res.redirect("/produtor");
                 }
 
                 case "Administrador": {
 
-                    res.redirect("/admin");
+                    return res.redirect("/admin");
                 }
 
                 default: {
 
-                    res.redirect("/index");
+                    return res.redirect("/index");
                 }
             }
         })
         .catch(err => {
-            res.render("error", {error: err});
+            return res.redirect("/login")
         })
 });
-
-// TODO: router para user
-// TODO: rota de logout
-// TODO: rota de mudar palavra pass
-// TODO: rota de eliminar conta
 
 module.exports = router;

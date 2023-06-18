@@ -9,9 +9,7 @@ router.get("/", function(req,res) {
 
     if (!jwtToken) {
 
-        res.redirect("/login");
-
-        return;
+        return res.redirect("/login");
     }
 
     axios.get("http://localhost:3000/api/users", {
@@ -26,14 +24,13 @@ router.get("/", function(req,res) {
 
             // Nota: este nao precisa de proteção pois todos os users registados podem aceder
 
-            res.render("pagConsumidor");
+            return res.render("pagConsumidor");
         })
 
         .catch(err => {
 
-            res.render("error", {error: err});
+            return res.redirect("/login");
         })
 })
-
 
 module.exports = router;
