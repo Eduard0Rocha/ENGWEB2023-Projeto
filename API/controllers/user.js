@@ -65,3 +65,23 @@ module.exports.deleteUser = nome => {
             return err;
         })
 }
+
+module.exports.getProdutores = () => {
+
+    return user.find({nivel: {$nin: ["Consumidor"]}}, {username:1,_id:0})
+        .sort({username:1})
+        .then(res => {
+
+            resList = [];
+
+            res.forEach(elem => {
+
+                resList.push(elem.username);
+            })
+
+            return resList;
+        })
+        .catch(err => {
+            return err;
+        })
+}

@@ -12,7 +12,7 @@ router.get("/", function(req,res) {
         .catch(erro => {
             res.status(500).json({"error": erro});
         });
-})
+});
 
 router.get("/:id", function(req, res) {
 
@@ -23,6 +23,6 @@ router.get("/:id", function(req, res) {
         .catch(erro => {
             res.status(500).json({"error": erro});
         });
-})
+});
 
 module.exports = router;

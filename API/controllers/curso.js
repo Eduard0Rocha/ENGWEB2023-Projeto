@@ -21,3 +21,14 @@ module.exports.getById = id => {
             return err;
         });
 }
+
+module.exports.getIdByInfo = (curso_nome,universidade) => {
+
+    return curso.findOne({"nomeDoCurso": curso_nome, "universidade": universidade})
+        .then(res => {
+            return res._id;
+        })
+        .catch(err => {
+            return err;
+        })
+}

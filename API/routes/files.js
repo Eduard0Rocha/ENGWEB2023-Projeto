@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var axios = require("axios");
-var auth = require('../auth/auth')
+var auth = require('../auth/auth');
 var file = require("../controllers/file");
+var user = require("../controllers/user");
+var curso = require("../controllers/curso");
 var fs = require("fs");
 var AdmZip = require('adm-zip');
-
-// TODO: proteger rotas
-
-// TODO: no cursos, considerar se for todos
+const archiver = require('archiver');
 
 function listarArquivosRecursivamente(pasta) {
 
@@ -203,6 +202,172 @@ router.post("/addRecurso", auth.verificaAcesso, function(req,res) {
         .catch(erro => {
 
             res.status(500).json(erro);
+        })
+});
+
+router.get("/download/:name", function(req,res) {
+    
+    var folderPath = "fileStore/" + req.params.name + "d";
+    var zipPath = "fileStore/" + req.params.name;
+
+    if (fs.existsSync(zipPath)) {
+
+        return res.status(500).send("O ficheiro está a ser utilizado agora. Por favor, aguarde :)")
+    }
+    
+    const outputZip = fs.createWriteStream(zipPath);
+    const archive = archiver('zip');
+
+    outputZip.on('close', () => {
+        console.log('Arquivo comprimido com sucesso!');
+
+        res.download(zipPath);
+
+        res.on('close', () => {
+
+            fs.unlink(zipPath, (err) => {
+
+                if (err) {
+    
+                    console.log("Erro ao eliminar o ficheiro");
+                }
+            })
+        })
+    });
+
+    archive.on('error', (err) => {
+        throw err;
+    });
+    
+    archive.directory(folderPath, false);
+
+    archive.pipe(outputZip);
+    archive.finalize();
+});
+
+router.get("/consumidorPageData", auth.verificaAcesso, function(req,res) {
+
+    var tema = req.query.tema;
+    var produtor = req.query.produtor;
+
+    user.getUserByName(req.user.username)
+        .then(data => {
+
+            var curso_nome = data.curso;
+            var universidade = data.universidade;
+
+            curso.getIdByInfo(curso_nome,universidade)
+                .then(data2 => {
+
+                    var curso_uni = data2;
+
+                    file.getTemas(curso_uni)
+                        .then(temas => {
+
+                            file.getNoticias(curso_uni)
+                                .then(noticias => {
+
+                                    user.getProdutores()
+                                        .then(produtores => {
+
+                                            var hasTema = tema != "";
+                                            var hasProdutor = produtor != "";
+
+                                            if (!hasTema && !hasProdutor) { // nao há qualquer filtro
+
+                                                file.getFileInfoForConsumer_noFilter(curso_uni)
+                                                    .then(recursos => {
+
+                                                        return res.status(200).json({
+                                                            produtores: produtores,
+                                                            temas: temas,
+                                                            noticias: noticias,
+                                                            recursos: recursos
+                                                        });
+                                                    })
+                                                    .catch(err6 => {
+                                                        return res.sendStatus(500).json(err6);
+                                                    })
+                                            }
+
+                                            else {
+
+                                                if (hasTema) { 
+
+                                                    if (hasProdutor) { // ambos os filtros são aplicados
+
+                                                        file.getFileInfoForConsumer_filterByTemaEProdutor(curso_uni,tema,produtor)
+                                                            .then(recursos => {
+
+                                                                return res.status(200).json({
+                                                                    produtores: produtores,
+                                                                    temas: temas,
+                                                                    noticias: noticias,
+                                                                    recursos: recursos
+                                                                });
+                                                            })
+                                                            .catch(err6 => {
+                                                                return res.sendStatus(500).json(err6);
+                                                            })
+                                                    }
+
+                                                    else { // apenas o filtro do tema é aplicado
+
+                                                        file.getFileInfoForConsumer_filterByTema(curso_uni,tema)
+                                                            .then(recursos => {
+
+                                                                return res.status(200).json({
+                                                                    produtores: produtores,
+                                                                    temas: temas,
+                                                                    noticias: noticias,
+                                                                    recursos: recursos
+                                                                });
+                                                            })
+                                                            .catch(err6 => {
+                                                                return res.sendStatus(500).json(err6);
+                                                            })
+                                                    }
+                                                }
+
+                                                else { // apenas o filtro do produtor é aplicado
+
+                                                    file.getFileInfoForConsumer_filterByProdutor(curso_uni,produtor)
+                                                        .then(recursos => {
+                                                            
+                                                            return res.status(200).json({
+                                                                produtores: produtores,
+                                                                temas: temas,
+                                                                noticias: noticias,
+                                                                recursos: recursos
+                                                            });
+                                                        })
+                                                        .catch(err6 => {
+                                                            return res.sendStatus(500).json(err6);
+                                                        })
+                                                }
+                                            }
+                                        })
+
+                                        .catch(err5 => {
+
+                                            return res.sendStatus(500).json(err5);
+                                        })
+                                })
+                                .catch(err4 => {
+
+                                    return res.sendStatus(500).json(err4);
+                                })
+                        })
+                        .catch(err3 => {
+                            return res.sendStatus(500).json(err3);
+                        })
+                }) 
+                .catch(err2 => {
+                    return res.sendStatus(500).json(err2);
+                })
+        })
+        .catch(err => {
+            return res.sendStatus(500).json(err);
         })
 });
 

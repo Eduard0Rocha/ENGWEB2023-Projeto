@@ -23,6 +23,7 @@ passport.deserializeUser(User.deserializeUser());
 var usersRouter = require('./routes/users');
 var cursosRouter = require('./routes/cursos');
 var filesRouter = require('./routes/files');
+var comentariosRouter = require('./routes/comentarios');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/users', usersRouter);
 app.use('/api/cursos', cursosRouter);
 app.use('/api/files', filesRouter);
+app.use('/api/comentarios', comentariosRouter);
 
 app.use(passport.initialize());
 app.use(passport.session({
