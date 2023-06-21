@@ -11,6 +11,8 @@ block content
         }
     .w3-card-4
         h1.w3-container.w3-blue #{user.username}
+        a(href="/")
+            button.w3-button.w3-white(style="position: absolute; left:88%; top:6.7%; width: 150px; height:45px; font-size:18px") Voltar
         .w3-container(style="font-size:16px")
             p <b>Email:</b> #{user.email}
             p <b>Cargo:</b> #{user.cargo}

@@ -41,7 +41,6 @@ app.use('/admin', adminRouter);
 app.use('/addRecurso', addRecursoRouter);
 app.use('/user', userPageRouter);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
