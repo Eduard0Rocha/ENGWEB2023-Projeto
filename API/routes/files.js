@@ -8,6 +8,7 @@ var curso = require("../controllers/curso");
 var fs = require("fs");
 var AdmZip = require('adm-zip');
 const archiver = require('archiver');
+const { isReadable } = require('stream');
 
 function listarArquivosRecursivamente(pasta) {
 
@@ -368,6 +369,67 @@ router.get("/consumidorPageData", auth.verificaAcesso, function(req,res) {
         })
         .catch(err => {
             return res.sendStatus(500).json(err);
+        })
+});
+
+router.get("/produtorPageData", auth.verificaAcesso, function(req,res) {
+
+    var produtor = req.user.username;
+
+    file.getRecursosDoProdutor(produtor)
+        .then(data => {
+
+            return res.status(200).json(data)
+        })
+        .catch(err => {
+
+            return res.status(500).json(err);
+        })
+});
+
+router.delete("/:id", auth.verificaAcesso, function(req,res) {
+
+    var idRecurso = req.params.id;
+
+    user.getUserByName(req.user.username)
+        .then(user => {
+
+            var nivel = user.nivel;
+
+            file.getFileById(idRecurso)
+                .then(recurso => {
+
+                    var isAdmin = (nivel == "Administrador");
+                    var isProdutorDoFich = (recurso.produtor == user.username);
+
+                    if (isAdmin || isProdutorDoFich) {
+
+                        console.log(recurso.filename);
+
+                        fs.rmSync("fileStore/"+recurso.filename+"d", {recursive:true, force:true});
+
+                        file.deleteFile(idRecurso)
+                            .then(data => {
+
+                                return res.status(204).json(data);
+                            })
+                            .catch(err => {
+                                
+                                return res.status(500).json(err);
+                            })
+                    }
+
+                    else {
+
+                        return res.status(401).data("Sem permissão para eliminar o ficheiro");
+                    }
+                })
+                .catch(err => {
+                    return res.status(500).json(err);
+                })
+        })
+        .catch(err => {
+            return res.status(500).json(err);
         })
 });
 

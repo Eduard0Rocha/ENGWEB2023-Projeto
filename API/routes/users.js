@@ -3,10 +3,8 @@ var router = express.Router();
 
 var jwt = require('jsonwebtoken')
 var passport = require('passport')
-
 var userModel = require('../models/user')
 var auth = require('../auth/auth')
-
 var user = require("../controllers/user");
 
 router.get("/", auth.verificaAcesso, function(req,res) {
