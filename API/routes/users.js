@@ -44,6 +44,32 @@ router.get("/", auth.verificaAcesso, function(req,res) {
   })
 });
 
+router.get("/all", auth.verificaAcesso, function(req,res) {
+
+  user.getUserByName(req.user.username)
+    .then(this_user => {
+      
+      if (this_user.nivel != "Administrador") {
+
+        return res.status(401).json({});
+      }
+
+      user.list()
+        .then(users => {
+
+          return res.status(200).json(users);
+        })
+        .catch(err => {
+
+          return res.status(500).json(err);
+        })
+
+    })
+    .catch(err => {
+      return res.status(500).json(err);
+    })
+})
+
 router.post('/register', function(req, res) {
 
   userModel.register(new userModel({

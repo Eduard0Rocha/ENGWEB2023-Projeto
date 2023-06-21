@@ -13,6 +13,47 @@ module.exports.getFileById = id => {
         })
 }
 
+module.exports.list = () => {
+
+    return file.find()
+        .then(res => {
+            
+            var res_w_data = [];
+
+            var promises = res.map(entrada => {
+
+            return comentarioController.getComentariosDoRecurso(entrada._id)
+                
+                .then(comentarios => {
+                    
+                    res_w_data.push({
+                        
+                        _id: entrada._id,
+                        createdAt: entrada._id.getTimestamp(),
+                        titulo: entrada.titulo,
+                        subtitulo: entrada.subtitulo,
+                        tipo: entrada.tipo,
+                        visibilidade: entrada.visibilidade,
+                        produtor: entrada.produtor,
+                        filename: entrada.filename,
+                        temas: entrada.temas,
+                        comentarios: comentarios
+                    });
+                })
+                
+                .catch(err2 => {
+                    
+                    console.log("Erro ao obter os comentários: " + err2);
+                });
+            });
+
+            return Promise.all(promises).then(() => res_w_data);
+        })
+        .catch(err => {
+            return err;
+        })
+}
+
 module.exports.createFile = f => {
 
     f.file = f.file+"d";

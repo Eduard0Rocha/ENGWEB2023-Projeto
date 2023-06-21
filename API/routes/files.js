@@ -433,4 +433,32 @@ router.delete("/:id", auth.verificaAcesso, function(req,res) {
         })
 });
 
+router.get("/all", auth.verificaAcesso, function(req,res) {
+
+    user.getUserByName(req.user.username)
+        .then(this_user => {
+        
+            if (this_user.nivel != "Administrador") {
+
+                return res.status(401).json({});
+            }
+
+            file.list()
+                .then(r => {
+
+                    return res.status(200).json(r);
+                })
+
+                .catch(err => {
+
+                    return res.status(500).json(err);
+                })
+        })
+
+        .catch(err => {
+
+            return res.status(500).json(err);
+        })
+})
+
 module.exports = router;
