@@ -1,4 +1,24 @@
 extends layout
 
 block content
-    h1 Admin
+    script.
+        function downloadFile(button) {
+
+            var file_name = button.id;
+
+            var url = "http://localhost:3000/api/files/download/" + file_name;
+
+            window.location.href = url;
+        }
+    h2.w3-container.w3-blue.w3-padding Bem-vindo #{username}
+    a(href="/user" style="background:white; color:blue; padding:12px; border-radius:50%; position:absolute; top:64px; right:80px; font-size:20px; width:52px; height:52px; text-align:center")
+        i.fa-solid.fa-user
+    a(href="/consumidor")
+        button.w3-button.w3-white(style="position: absolute; left:83%; top:7.1%; width: 150px; height:40px; font-size:18px") Consumidor
+    a(href="/produtor")
+        button.w3-button.w3-white(style="position: absolute; left:73%; top:7.1%; width: 150px; height:40px; font-size:18px") Produtor
+    .w3-display-container(style="margin-top:3%")
+        .w3-card-4.w3-display-left.w3-purple(style="width:35%")
+            p utilizadores
+        .w3-card-4.w3-display-right.w3-orange(style="width:64%")
+            p ficheiros

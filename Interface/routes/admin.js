@@ -19,7 +19,6 @@ router.get("/", function(req,res) {
     })
         .then(r => {
 
-            // TODO: usar este valor
             var user = r.data;
 
             var nivel = user.nivel;
@@ -29,7 +28,14 @@ router.get("/", function(req,res) {
                 return res.redirect("/index");
             }
 
-            return res.render("pagAdmin");
+            // TODO: obter informação de todos os utilizadores
+            // TODO: obter informação de todos os recurso
+            // TODO: renderizar informação dos utilizadores
+            // TODO: renderizar informação dos recursos
+            // TODO: funcionalidade de eliminar recurso
+            // TODO: funcionalidade de eliminar utilizador
+
+            return res.render("pagAdmin", {username:user.username});
         })
 
         .catch(err => {
