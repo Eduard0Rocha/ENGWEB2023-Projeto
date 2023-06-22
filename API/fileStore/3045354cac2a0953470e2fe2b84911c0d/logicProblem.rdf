@@ -1,0 +1,490 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY mylogic "http://ontologies.di.uminho.pt/logicProblem#" >
+]>
+
+
+<rdf:RDF xmlns="http://ontologies.di.uminho.pt/logicProblem#"
+     xml:base="http://ontologies.di.uminho.pt/logicProblem"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:mylogic="http://ontologies.di.uminho.pt/logicProblem#">
+    <owl:Ontology rdf:about="http://ontologies.di.uminho.pt/logicProblem"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#gostaAnimal -->
+
+    <owl:AnnotationProperty rdf:about="&mylogic;gostaAnimal"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#gostaDisc -->
+
+    <owl:AnnotationProperty rdf:about="&mylogic;gostaDisc"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#gostaSumo -->
+
+    <owl:AnnotationProperty rdf:about="&mylogic;gostaSumo"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#querViajar -->
+
+    <owl:AnnotationProperty rdf:about="&mylogic;querViajar"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#temMochila -->
+
+    <owl:AnnotationProperty rdf:about="&mylogic;temMochila"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#direita -->
+
+    <owl:ObjectProperty rdf:about="&mylogic;direita">
+        <owl:inverseOf rdf:resource="&mylogic;esquerda"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#esquerda -->
+
+    <owl:ObjectProperty rdf:about="&mylogic;esquerda"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontologies.di.uminho.pt/logicProblem#posicao -->
+
+    <owl:DatatypeProperty rdf:about="http://ontologies.di.uminho.pt/logicProblem#posicao"/>
+    
+
+
+    <!-- http://ontologies.di.uminho.pt/logicProblem#temCor -->
+
+    <owl:DatatypeProperty rdf:about="http://ontologies.di.uminho.pt/logicProblem#temCor"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#temNome -->
+
+    <owl:DatatypeProperty rdf:about="&mylogic;temNome">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Animal -->
+
+    <owl:Class rdf:about="&mylogic;Animal"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Cidade -->
+
+    <owl:Class rdf:about="&mylogic;Cidade"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Disciplina -->
+
+    <owl:Class rdf:about="&mylogic;Disciplina"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Menina -->
+
+    <owl:Class rdf:about="&mylogic;Menina"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Mochila -->
+
+    <owl:Class rdf:about="&mylogic;Mochila"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Sumo -->
+
+    <owl:Class rdf:about="&mylogic;Sumo"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Abacaxi -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Abacaxi">
+        <rdf:type rdf:resource="&mylogic;Sumo"/>
+        <mylogic:temNome>Abacaxi</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Amarela -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Amarela">
+        <rdf:type rdf:resource="&mylogic;Mochila"/>
+        <temCor>Amarela</temCor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Artes -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Artes">
+        <rdf:type rdf:resource="&mylogic;Disciplina"/>
+        <mylogic:temNome>Artes</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Azul -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Azul">
+        <rdf:type rdf:resource="&mylogic;Mochila"/>
+        <temCor>Azul</temCor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Biologia -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Biologia">
+        <rdf:type rdf:resource="&mylogic;Disciplina"/>
+        <mylogic:temNome>Biologia</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Bruxelas -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Bruxelas">
+        <rdf:type rdf:resource="&mylogic;Cidade"/>
+        <mylogic:temNome>Bruxelas</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Canario -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Canario">
+        <rdf:type rdf:resource="&mylogic;Animal"/>
+        <mylogic:temNome>Canário</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Cao -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Cao">
+        <rdf:type rdf:resource="&mylogic;Animal"/>
+        <mylogic:temNome>Cão</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Cavalo -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Cavalo">
+        <rdf:type rdf:resource="&mylogic;Animal"/>
+        <mylogic:temNome>Cavalo</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Estocolmo -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Estocolmo">
+        <rdf:type rdf:resource="&mylogic;Cidade"/>
+        <mylogic:temNome>Estocolmo</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Gato -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Gato">
+        <rdf:type rdf:resource="&mylogic;Animal"/>
+        <mylogic:temNome>Gato</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Hamster -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Hamster">
+        <rdf:type rdf:resource="&mylogic;Animal"/>
+        <mylogic:temNome>Hamster</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Historia -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Historia">
+        <rdf:type rdf:resource="&mylogic;Disciplina"/>
+        <mylogic:temNome>História</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Laranja -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Laranja">
+        <rdf:type rdf:resource="&mylogic;Sumo"/>
+        <mylogic:temNome>Laranja</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Limao -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Limao">
+        <rdf:type rdf:resource="&mylogic;Sumo"/>
+        <mylogic:temNome>Limão</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Londres -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Londres">
+        <rdf:type rdf:resource="&mylogic;Cidade"/>
+        <mylogic:temNome>Londres</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Maracuja -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Maracuja">
+        <rdf:type rdf:resource="&mylogic;Sumo"/>
+        <mylogic:temNome>Maracujá</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Matematica -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Matematica">
+        <rdf:type rdf:resource="&mylogic;Disciplina"/>
+        <mylogic:temNome>Matemática</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Menina1 -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Menina1">
+        <rdf:type rdf:resource="&mylogic;Menina"/>
+        <mylogic:temNome>Pati</mylogic:temNome>
+        <posicao>1</posicao>
+        <mylogic:temMochila rdf:resource="&mylogic;Amarela"/>
+        <mylogic:gostaAnimal rdf:resource="&mylogic;Canario"/>
+        <mylogic:gostaDisc rdf:resource="&mylogic;Historia"/>
+        <mylogic:querViajar rdf:resource="&mylogic;Londres"/>
+        <mylogic:direita rdf:resource="&mylogic;Menina2"/>
+        <mylogic:gostaSumo rdf:resource="&mylogic;Morango"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Menina2 -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Menina2">
+        <rdf:type rdf:resource="&mylogic;Menina"/>
+        <mylogic:temNome>Joana</mylogic:temNome>
+        <posicao>2</posicao>
+        <mylogic:gostaSumo rdf:resource="&mylogic;Abacaxi"/>
+        <mylogic:temMochila rdf:resource="&mylogic;Azul"/>
+        <mylogic:gostaAnimal rdf:resource="&mylogic;Cao"/>
+        <mylogic:gostaDisc rdf:resource="&mylogic;Matematica"/>
+        <mylogic:esquerda rdf:resource="&mylogic;Menina1"/>
+        <mylogic:direita rdf:resource="&mylogic;Menina3"/>
+        <mylogic:querViajar rdf:resource="&mylogic;Paris"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Menina3 -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Menina3">
+        <rdf:type rdf:resource="&mylogic;Menina"/>
+        <posicao>3</posicao>
+        <mylogic:temNome>Ana</mylogic:temNome>
+        <mylogic:querViajar rdf:resource="&mylogic;Bruxelas"/>
+        <mylogic:gostaAnimal rdf:resource="&mylogic;Gato"/>
+        <mylogic:gostaSumo rdf:resource="&mylogic;Limao"/>
+        <mylogic:esquerda rdf:resource="&mylogic;Menina2"/>
+        <mylogic:direita rdf:resource="&mylogic;Menina4"/>
+        <mylogic:gostaDisc rdf:resource="&mylogic;Portugues"/>
+        <mylogic:temMochila rdf:resource="&mylogic;Vermelha"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Menina4 -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Menina4">
+        <rdf:type rdf:resource="&mylogic;Menina"/>
+        <mylogic:temNome>Jessica</mylogic:temNome>
+        <posicao>4</posicao>
+        <mylogic:gostaDisc rdf:resource="&mylogic;Biologia"/>
+        <mylogic:gostaAnimal rdf:resource="&mylogic;Cavalo"/>
+        <mylogic:gostaSumo rdf:resource="&mylogic;Laranja"/>
+        <mylogic:esquerda rdf:resource="&mylogic;Menina3"/>
+        <mylogic:direita rdf:resource="&mylogic;Menina5"/>
+        <mylogic:querViajar rdf:resource="&mylogic;Roma"/>
+        <mylogic:temMochila rdf:resource="&mylogic;Verde"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Menina5 -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Menina5">
+        <rdf:type rdf:resource="&mylogic;Menina"/>
+        <mylogic:temNome>Renata</mylogic:temNome>
+        <posicao>5</posicao>
+        <mylogic:gostaDisc rdf:resource="&mylogic;Artes"/>
+        <mylogic:querViajar rdf:resource="&mylogic;Estocolmo"/>
+        <mylogic:gostaAnimal rdf:resource="&mylogic;Hamster"/>
+        <mylogic:gostaSumo rdf:resource="&mylogic;Maracuja"/>
+        <mylogic:esquerda rdf:resource="&mylogic;Menina4"/>
+        <mylogic:temMochila rdf:resource="&mylogic;Preta"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Morango -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Morango">
+        <rdf:type rdf:resource="&mylogic;Sumo"/>
+        <mylogic:temNome>Morango</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Paris -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Paris">
+        <rdf:type rdf:resource="&mylogic;Cidade"/>
+        <mylogic:temNome>Paris</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Portugues -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Portugues">
+        <rdf:type rdf:resource="&mylogic;Disciplina"/>
+        <mylogic:temNome>Português</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Preta -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Preta">
+        <rdf:type rdf:resource="&mylogic;Mochila"/>
+        <temCor>Preta</temCor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Roma -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Roma">
+        <rdf:type rdf:resource="&mylogic;Cidade"/>
+        <mylogic:temNome>Roma</mylogic:temNome>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Verde -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Verde">
+        <rdf:type rdf:resource="&mylogic;Mochila"/>
+        <temCor>Verde</temCor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/4/mylogic#Vermelha -->
+
+    <owl:NamedIndividual rdf:about="&mylogic;Vermelha">
+        <rdf:type rdf:resource="&mylogic;Mochila"/>
+        <temCor>Vermelha</temCor>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
