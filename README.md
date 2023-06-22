@@ -10,4 +10,7 @@ Este projeto consiste num serviço web implementado com NodeJS, Express e MongoD
 
 Siga as instruções abaixo para executar os servidores do projeto na sua máquina local:
 
-1. Clone o repositório para a sua máquina: `https://github.com/Eduar/seu-projeto.git`
+1. Clone o repositório para a sua máquina:
+```bash
+https://github.com/Eduard0Rocha/ProjetoEW.git
+```
