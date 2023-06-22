@@ -1,0 +1,43 @@
+version: "3"
+services:
+  api:
+    container_name: api_gfich
+    build: ./API
+    restart: always
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/gfich
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+    networks:
+      - fichnet
+
+  interface:
+    container_name: interface_gfich
+    build: ./Interface
+    restart: always
+    ports:
+      - 3001:3001
+    networks:
+      - fichnet
+
+  mongodb:
+    container_name: gfich-mongodb
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - gfichData:/data/db
+    networks:
+      - fichnet
+
+networks:
+  fichnet:
+    name: fichnet
+    driver: bridge
+
+volumes:
+  gfichData:
+  

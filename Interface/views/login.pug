@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  .w3-display-container(style="height:300px;margin-top:8%;")
+    form.w3-card-4.w3-display-left.w3-light-gray(style="width:40%;margin-left:6%" action="/login" method="POST")
+      fieldset(style="border:none;padding:0;margin:0")
+        .w3-container.w3-blue.w3-padding
+          h2 Login
+        .w3-container.w3-padding
+          label Username
+          input.w3-input(type="text" name="username" required)
+        .w3-container.w3-padding
+          label Password
+          input.w3-input(type="password" name="password" required)
+      input.w3-button.w3-blue(style="margin: 7px 0 7px 15px" type="submit" value="Entrar")
+    form.w3-card-4.w3-display-right.w3-light-gray(style="width:40%;margin-right:6%;margin-top:6%" action="/register" method="POST")
+      fieldset(style="border:none;padding:0;margin:0")
+        .w3-container.w3-blue.w3-padding
+          h2 Registar
+        .w3-container.w3-padding
+          label Username
+          input.w3-input(type="text" name="username" required)
+        .w3-container.w3-padding
+          label Email
+          input.w3-input(type="email" name="email" required)
+        .w3-container.w3-padding
+          label Password
+          input.w3-input(type="password" name="password" required)
+        .w3-container.w3-padding
+          label Cargo
+          select.w3-select(name="cargo" type="text" required)
+            option(value="" disabled selected) Escolha uma opção 
+            option(value="Estudante") Estudante
+            option(value="Docente") Docente
+        .w3-container.w3-padding
+          label Curso/Universidade
+          select.w3-select(name="curso_uni" type="text" required)
+            option(value="" disabled selected) Escolha uma opção
+            each curso in cursos
+              option(value=curso['_id']) #{curso['nomeDoCurso']} (#{curso['universidade']})
+        .w3-container.w3-padding
+          label Nível 
+          select.w3-select(name="nivel")
+            option(value="" disabled selected) Escolha uma opção 
+            option(value="Consumidor") Consumidor
+            option(value="Produtor") Produtor
+      input.w3-button.w3-blue(style="margin: 7px 0 7px 15px" type="submit" value="Registar")
+  if message
+    .w3-panel.w3-yellow(style="bottom: 0; left: 25%; position: absolute; width: 1000px")
+      h3 Aviso
+      p #{message}

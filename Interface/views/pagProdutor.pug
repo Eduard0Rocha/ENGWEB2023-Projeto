@@ -1,0 +1,60 @@
+extends layout
+
+block content
+    script.
+        function downloadFile(button) {
+
+            var file_name = button.id;
+
+            var url = "http://localhost:3000/api/files/download/" + file_name;
+
+            window.location.href = url;
+        }
+    h2.w3-container.w3-blue.w3-padding Bem-vindo #{username}
+    a(href="/user" style="background:white; color:blue; padding:12px; border-radius:50%; position:absolute; top:64px; right:80px; font-size:20px; width:52px; height:52px; text-align:center")
+        i.fa-solid.fa-user
+    a(href="/consumidor")
+        button.w3-button.w3-white(style="position: absolute; left:83%; top:7.1%; width: 150px; height:40px; font-size:18px") Consumidor
+    if isAdmin
+        a(href="/admin")
+            button.w3-button.w3-white(style="position: absolute; left:73%; top:7.1%; width: 150px; height:40px; font-size:18px") Administrador
+    a.w3-button.w3-green(href="/addRecurso" style="margin: 30px 0 30px 680px; font-size:23px;width:400px;") Adicionar Recurso
+    div.w3-card-4.w3-orange.w3-padding(style="width:100%")
+        .w3-container.w3-orange.w3-padding
+            h3 Recursos publicados
+        each recurso in recursos
+            .w3-container.w3-padding.w3-margin.w3-light-gray(style="text-align:center")
+                h4(style="color:#a35a00") <b>#{recurso.titulo}</b>
+                if recurso.subtitulo
+                    h5 <b>#{recurso.subtitulo}</b>
+                p <b>Produtor:</b> #{recurso.produtor}
+                if recurso.mediaRank
+                    p <b>Ranking:</b> #{recurso.mediaRank.toFixed(2)}&#11088;
+                else
+                    p <b>[Ainda sem classificações]</b>
+                p <b>Tipo:</b> #{recurso.tipo}
+                if (recurso.temas.length === 0)
+                    p <b>[Sem temas]</b>
+                else
+                    p <b>Temas:</b> #{recurso.temas}
+                p <b>Visibilidade:</b> #{recurso.visibilidade} 
+                p <b>Publicado em:</b> #{recurso.createdAt.substring(0,10)} às #{recurso.createdAt.substring(11,16)}h
+                button.w3-button.w3-orange(style="width:200px" onclick="downloadFile(this)" id=recurso.filename) Download
+                if (recurso.comentarios.length != 0)
+                    .w3-card-4.w3-padding(style="background-color:#FFD580; margin: 20px 150px")
+                        h5.w3-padding <b>Comentários</b>
+                        if (recurso.comentarios.length != 0)
+                            .w3-card-4.w3-margin.w3-light-gray.w3-padding(style="text-align:left;padding-left:10px")
+                                each comentario in recurso.comentarios
+                                    p <b>#{comentario.userName}</b>: #{comentario.rank}&#11088;  - #{comentario.comentario}
+                form.w3-card-4(action="/produtor/delete" method="GET" style="margin: 30px 600px 30px 600px; padding: 0 0 10px 0")
+                    fieldset(style="border:none;padding:0;margin:0;")
+                        .w3-container.w3-orange
+                            h3 Eliminar recurso
+                        .w3-container.w3-padding
+                            label Password
+                            input.w3-input(type="password" name="password" required)
+                    input.w3-input(style="display:none" type="text" name="idRecurso" value=recurso._id)
+                    input.w3-button.w3-orange.w3-margin-left(type="submit" value="Eliminar")
+                    if wrongPass
+                        p(style="color:red") Password incorreta

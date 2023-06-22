@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    script.
+        function deleteCookie(cookieName) {
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        }
+        function logout() {
+            deleteCookie('jwt');
+            window.location.href = "/";
+        }
+    .w3-card-4
+        h1.w3-container.w3-blue #{user.username}
+        a(href="/")
+            button.w3-button.w3-white(style="position: absolute; left:88%; top:6.7%; width: 150px; height:45px; font-size:18px") Voltar
+        .w3-container(style="font-size:16px")
+            p <b>Email:</b> #{user.email}
+            p <b>Cargo:</b> #{user.cargo}
+            p <b>Curso:</b> #{user.curso}
+            p <b>Universidade:</b> #{user.universidade}
+            p <b>Nível:</b> #{user.nivel}
+            p <b>Data de registo:</b> #{user.dataDeRegisto.substring(0,10)}
+            button.w3-button.w3-blue(style="width:250px" onclick="logout()") Logout
+            form.w3-card-4.w3-margin-top(action="/user/changePassword" method="GET")
+                fieldset(style="border:none;padding:0;margin:0;")
+                    .w3-container.w3-green
+                        h3 Mudar password
+                    .w3-container.w3-padding
+                        label Nova password
+                        input.w3-input(type="password" name="novaPassword" required)
+                input.w3-button.w3-green.w3-margin-left(type="submit" value="Alterar")
+                if changePass
+                    p(style="color:green") Password alterada
+                else
+                    p &nbsp;
+            form.w3-card-4.w3-margin-top(action="/user/delete" method="GET")
+                fieldset(style="border:none;padding:0;margin:0;")
+                    .w3-container.w3-red
+                        h3 Eliminar conta
+                    .w3-container.w3-padding
+                        label Password
+                        input.w3-input(type="password" name="password" required)
+                input.w3-button.w3-red.w3-margin-left(type="submit" value="Eliminar")
+                if errorDeleting
+                    p(style="color:red") Erro ao eliminar o utilizador: #{errorDeleting}
+
+        
