@@ -1,4 +1,0 @@
-files/pi2010-miniteste1A.pdf
-files/pi2010-miniteste1B.pdf
-files/pi2010-miniteste1C.pdf
-files/pi2010-miniteste1D.pdf

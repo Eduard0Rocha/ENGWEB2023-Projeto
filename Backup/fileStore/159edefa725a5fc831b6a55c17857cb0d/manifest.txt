@@ -1,2 +1,0 @@
-files/parseint.c
-files/scan1int.c
