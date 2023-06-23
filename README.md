@@ -25,5 +25,5 @@ docker cp Backup/backupDB gfich-mongodb:/backup
 ```bash
 docker exec gfich-mongodb mongorestore --drop --db gfich /backup/gfich
 ```
-Poderá adicionar também à base de dados o conteúdos dos ficheiros .json presentes na pasta Data relativos aos cursos e ao administrador com o comando "mongoimport".
+Poderá adicionar também à base de dados o conteúdos dos ficheiros .json presentes na pasta Data relativos aos cursos e ao administrador com o comando "mongoimport".</br></br>
 Com isto, o projeto fica acessível através do link: http://localhost:3000.
