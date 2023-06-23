@@ -16,7 +16,7 @@ https://github.com/Eduard0Rocha/ProjetoEW.git
 ```
 2. De seguida, na pasta principal, crie os containers para correr o projeto:
 ```bash
-docker up -d --build
+docker-compose up -d --build
 ```
 3. Para restaurar a base de dados execute os seguintes comandos:
 ```bash
