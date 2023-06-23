@@ -25,3 +25,4 @@ docker cp Backup/backupDB gfich-mongodb:/backup
 ```bash
 docker exec gfich-mongodb mongorestore --drop --db gfich /backup/gfich
 ```
+Com isto, o projeto fica acessível através do link "http://localhost:3000
