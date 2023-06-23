@@ -22,3 +22,6 @@ docker up -d --build
 ```bash
 docker cp Backup/backupDB gfich-mongodb:/backup
 ```
+```bash
+docker exec gfich-mongodb mongorestore --drop --db gfich /backup/gfich
+```
