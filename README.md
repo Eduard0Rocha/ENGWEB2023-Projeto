@@ -14,3 +14,11 @@ Siga as instruções abaixo para executar os servidores do projeto na sua máqui
 ```bash
 https://github.com/Eduard0Rocha/ProjetoEW.git
 ```
+2. De seguida, na pasta principal, crie os containers para correr o projeto:
+```bash
+docker up -d --build
+```
+3. Para restaurar a base de dados execute os seguintes comandos:
+```bash
+docker cp Backup/backupDB gfich-mongodb:/backup
+```
