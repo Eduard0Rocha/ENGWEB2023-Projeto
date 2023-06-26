@@ -12,7 +12,7 @@ Siga as instruções abaixo para executar os servidores do projeto na sua máqui
 
 1. Clone o repositório para a sua máquina:
 ```bash
-https://github.com/Eduard0Rocha/ProjetoEW.git
+https://github.com/Eduard0Rocha/ENGWEB2023-Projeto.git
 ```
 2. De seguida, na pasta principal, crie os containers para correr o projeto:
 ```bash
