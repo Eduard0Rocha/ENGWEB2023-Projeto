@@ -148,3 +148,31 @@ A realização deste projeto permitiu desenvolver uma maior compreensão sobre o
 Considero ter cumprido, na íntegra, todos os objetivos propostos pelo enunciado do projeto ao desenvolver este sistema.
 
 # Anexos
+
+## Anexo A - Manual de utilização 
+
+Siga as instruções abaixo para executar os servidores do projeto na sua máquina local:
+
+1. Clone o repositório para a sua máquina:
+
+```bash
+git clone https://github.com/Eduard0Rocha/ENGWEB2023-Projeto.git
+```
+2. De seguida, na pasta principal, crie os containers para correr o projeto:
+
+```bash
+docker-compose up -d --build
+```
+3. Para restaurar a base de dados execute os seguintes comandos:
+
+```bash
+docker cp Backup/backupDB gfich-mongodb:/backup
+```
+
+```bash
+docker exec gfich-mongodb mongorestore --drop --db gfich /backup/gfich
+```
+
+Poderá adicionar também à base de dados o conteúdo dos ficheiros .json presentes na pasta Data relativos aos cursos e ao administrador com o comando "mongoimport".
+
+Com isto, o projeto fica acessível através do link: http://localhost:3000.
